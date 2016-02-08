@@ -82,6 +82,9 @@ app.controller("MainCtrl",
 							bbArr[i] = '[B][COLOR=red]' + bbArr[i] + '[/COLOR][/B]';
 						}
 					}
+					shiftCount = 0;
+					firstInd = 0;
+					secondInd = 0;
 				}
 
 				$scope.testing = index + " " + shiftCount;
