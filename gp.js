@@ -101,6 +101,40 @@ app.controller("MainCtrl",
 
 		$scope.removeStyle = function(event, index)
 		{
+
+			if (event.ctrlKey)
+			{
+
+				shiftCount++;
+				if (shiftCount === 1)
+				{
+					firstInd = index;
+				}
+				if (shiftCount === 2)
+				{
+					secondInd = index;
+				}
+
+				if (secondInd > 0)
+				{
+					for (var i = Math.min(firstInd, secondInd); i < Math.max(firstInd, secondInd); i++)
+					{
+
+						$scope["style" + i] = {'color' : 'none', 'font-weight' : 'none'};
+						if (bbArr[i].contains('[B][COLOR=red]'))
+						{
+
+							bbArr[i] = bbArr[i].substring(14);
+							bbArr[i] = bbArr[i].substring(0, bbArr[i].length - 12);
+						}
+					}
+					shiftCount = 0;
+					firstInd = 0;
+					secondInd = 0;
+				}
+
+				$scope.testing = index + " " + shiftCount;
+			}
 	
 			$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
 
