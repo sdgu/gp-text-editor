@@ -52,10 +52,44 @@ app.controller("MainCtrl",
 		$scope.m.dispArr = htmlArr;
 		$scope.m.cpArr = bbArr;
 
+		var firstInd = 0;
+		var secondInd = 0;
+		var shiftCount = 0;
+
 		$scope.turnRed = function(event, index)
 		{	
+
+			if (event.shiftKey)
+			{
+
+				shiftCount++;
+				if (shiftCount === 1)
+				{
+					firstInd = index;
+				}
+				if (shiftCount === 2)
+				{
+					secondInd = index;
+				}
+
+				if (secondInd > 0)
+				{
+					for (var i = firstInd; i < secondInd; i++)
+					{
+						$scope["style" + i] = {'color' : 'red', 'font-weight' : 'bold'};
+						if (!(bbArr[i].contains('[B][COLOR=red]')))
+						{
+							bbArr[i] = '[B][COLOR=red]' + bbArr[i] + '[/COLOR][/B]';
+						}
+					}
+				}
+
+				$scope.testing = index + " " + shiftCount;
+			}
+
 			$scope["style" + index] = {'color' : 'red', 'font-weight' : 'bold'};
 
+			//only need to check the beginning because removing will remove both sides
 			if (!(bbArr[index].contains('[B][COLOR=red]')))
 			{
 				bbArr[index] = '[B][COLOR=red]' + bbArr[index] + '[/COLOR][/B]';
@@ -75,7 +109,10 @@ app.controller("MainCtrl",
 			}
 		}
 
-
+		$scope.addWord = function(event, index)
+		{
+			alert(index);
+		}
 
 
 		$scope.test = function()
