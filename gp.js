@@ -74,7 +74,7 @@ app.controller("MainCtrl",
 
 				if (secondInd > 0)
 				{
-					for (var i = firstInd; i < secondInd; i++)
+					for (var i = Math.min(firstInd, secondInd); i < Math.max(firstInd, secondInd); i++)
 					{
 						$scope["style" + i] = {'color' : 'red', 'font-weight' : 'bold'};
 						if (!(bbArr[i].contains('[B][COLOR=red]')))
