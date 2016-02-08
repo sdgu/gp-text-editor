@@ -5,13 +5,12 @@
 <body ng-app="gptexteditor">
 	<div ng-controller="MainCtrl as m">
 
-		<span ng-style="testStyle" ng-right-click="test2($event)" ng-click="test()">Test</span>
+		<span ng-style="testStyle" ng-dblclick="test3()" ng-right-click="test2($event)" sglclick="test()">Test</span>
 
 		<h1>WYSIWYG</h1>
 		<span ng-repeat="word in m.dispArr track by $index">
 
-			<span ng-bind="word" ng-style="style{{$index}}" ng-click="turnRed($event, $index)"></span>
-
+			<span ng-bind="word" ng-style="style{{$index}}" sglclick="turnRed($event, $index)" ng-right-click="removeStyle($event, $index)"></span>
 
 		</span>
 
