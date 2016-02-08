@@ -1,0 +1,16 @@
+body, html 
+{
+  padding: 20px;
+  font: 20px "Ubuntu", sans-serif;
+  background-color: #F0F0F0;
+}
+input
+{
+
+	font: "Ubuntu", sans-serif;
+	margin-right: 5px;
+}
+a 
+{
+  color: #00B7FF;
+}

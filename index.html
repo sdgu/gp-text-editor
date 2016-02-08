@@ -1,0 +1,60 @@
+<html>
+<head>
+	<title>GP Text Editor</title>
+</head>
+<body ng-app="gptexteditor">
+	<div ng-controller="MainCtrl as m">
+
+		<span ng-style="testStyle" ng-right-click="test2($event)" ng-click="test()">Test</span>
+
+		<h1>WYSIWYG</h1>
+		<span ng-repeat="word in m.dispArr track by $index">
+
+			<span ng-bind="word" ng-style="style{{$index}}" ng-click="turnRed($event, $index)"></span>
+
+
+		</span>
+
+		<br /><br /><br />
+		<h1>BB Code</h1>
+		<span ng-repeat="word in m.cpArr track by $index">
+
+			<span ng-bind="word"></span>
+
+		</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+<link rel='stylesheet' href='gpstyle.css'></link>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.3/angular-material.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="gp.js"></script>
+</body>
+</html>
