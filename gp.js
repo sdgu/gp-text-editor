@@ -1,4 +1,4 @@
-var app = angular.module("gptexteditor", ["ngSanitize", "ngclipboard"]);
+var app = angular.module("gptexteditor", ["ngSanitize", "ngclipboard", "ngCookies"]);
 
 app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
@@ -40,7 +40,7 @@ app.directive('sglclick', ['$parse', function($parse) {
 
 
 app.controller("MainCtrl",
-	function($scope)
+	function($scope, $cookies)
 	{
 	
 
@@ -50,12 +50,24 @@ app.controller("MainCtrl",
 		
 		// $scope.m.dispArr = $scope.m.dispArr;
 		// $scope.m.cpArr = $scope.m.cpArr;
-		
+
+
 		$scope.limit = 200;
 		$scope.go = function()
 		{
+	
+			// if ($cookies.get("htmlArr").length > 0)
+			// {
+			// 	$scope.m.dispArr = $cookies.get("htmlArr");
+			// }
+
 			$scope.m.dispArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
 			$scope.m.cpArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
+
+
+
+
+
 		}
 
 		$scope.copyToBoard = function()
@@ -68,6 +80,8 @@ app.controller("MainCtrl",
 		{
 			$scope.limit += 200;
 		}
+
+
 		var firstInd = 0;
 		var secondInd = 0;
 		var shiftCount = 0;
@@ -76,11 +90,12 @@ app.controller("MainCtrl",
 		{
 			shiftCount = 0;
 
-			
 		}
 
 		$scope.turnRed = function(event, index)
 		{	
+
+
 
 			if (event.shiftKey)
 			{
