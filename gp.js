@@ -72,7 +72,7 @@ app.controller("MainCtrl",
 
 		$scope.copyToBoard = function()
 		{
-			$scope.cpthis = $scope.m.cpArr.join(" ");
+			$scope.cpthis = $scope.m.cpArr.join(" ").replace(/\[\/COLOR]\[\/B] \[B]\[COLOR=red]/g, " ");
 
 		}
 
