@@ -17,7 +17,7 @@ app.directive('sglclick', ['$parse', function($parse) {
         restrict: 'A',
         link: function(scope, element, attr) {
           var fn = $parse(attr['sglclick']);
-          var delay = 200, clicks = 0, timer = null;
+          var delay = 250, clicks = 0, timer = null;
           element.on('click', function (event) {
             clicks++;  //count clicks
             if(clicks === 1) {
@@ -36,21 +36,39 @@ app.directive('sglclick', ['$parse', function($parse) {
     };
 }])
 
+
+
 app.controller("MainCtrl",
 	function($scope)
 	{
 	
-		var message = "I like pasta and Smogon drools a lot. Also Smogon is cyka.";
+
+		
+		var message = $scope.thingToGP;
+		//var message = $scope.thingToGP;
+		//"I like pasta and Smogon drools a lot. Also Smogon is cyka.";
 		
 		// var bbArr = message.split(" ");
 		//$scope.m.dispArr = [];
 		//$scope.m.dispArr = message.split(" ");
 		//$scope.m.cpArr = message.split(" ");
+
+
+		//var message = "dong masters"
+	
+
 		var htmlArr = message.split(" ");
 		var bbArr = message.split(" ");
+		
+
+
 		//var htmlArr = $scope.m.dispArr;
 		$scope.m.dispArr = htmlArr;
 		$scope.m.cpArr = bbArr;
+	
+
+
+
 
 		var firstInd = 0;
 		var secondInd = 0;

@@ -5,6 +5,10 @@
 <body ng-app="gptexteditor">
 	<div ng-controller="MainCtrl as m">
 
+		<textarea cols="50" rows="20" ng-model="thingToGP"></textarea> <br />
+		<button ng-click="go()">Prep</button> <br />
+		<p ng-bind="thingToGP"></p>
+
 		<span ng-style="testStyle" ng-dblclick="test3()" ng-right-click="test2($event)" sglclick="test()">Test</span>
 		<br />
 		<!-- <span ng-bind="testing"></span> -->
