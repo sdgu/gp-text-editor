@@ -7,15 +7,15 @@
 
 		<span ng-style="testStyle" ng-dblclick="test3()" ng-right-click="test2($event)" sglclick="test()">Test</span>
 		<br />
-		<span ng-bind="testing"></span>
+		<!-- <span ng-bind="testing"></span> -->
 
-		<input ng-model="addHere" />
+		<button ng-click="resetShift()">Reset Shift</button> (lazy solution if you accidentally lift shift before clicking the ending word)
 
 		<h1>WYSIWYG</h1>
 		<div class="noselect">
 		<span ng-repeat="word in m.dispArr track by $index">
 
-			<span ng-bind="word" ng-style="style{{$index}}" sglclick="turnRed($event, $index)" ng-right-click="removeStyle($event, $index)" ng-dblclick="showAddWord($event, $index)"></span>
+			<span ng-bind-html="word" ng-style="style{{$index}}" sglclick="turnRed($event, $index)" ng-right-click="removeStyle($event, $index)" ng-dblclick="showAddWord($event, $index)"></span>
 
 			<input id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)"/>
 

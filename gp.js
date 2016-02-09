@@ -1,4 +1,4 @@
-var app = angular.module("gptexteditor", []);
+var app = angular.module("gptexteditor", ["ngSanitize"]);
 
 app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {
@@ -56,7 +56,10 @@ app.controller("MainCtrl",
 		var secondInd = 0;
 		var shiftCount = 0;
 
-
+		$scope.resetShift = function()
+		{
+			shiftCount = 0;
+		}
 
 		$scope.turnRed = function(event, index)
 		{	
@@ -76,9 +79,9 @@ app.controller("MainCtrl",
 
 				if (secondInd > 0)
 				{
-					for (var i = Math.min(firstInd, secondInd); i < Math.max(firstInd, secondInd); i++)
+					for (var i = Math.min(firstInd, secondInd); i < Math.max(firstInd, secondInd) + 1; i++)
 					{
-						$scope["style" + i] = {'color' : 'red', 'font-weight' : 'bold'};
+						htmlArr[i] = '<strong class="redRemove">' + htmlArr[i] + '</strong>';
 						if (!(bbArr[i].contains('[B][COLOR=red]')))
 						{
 							bbArr[i] = '[B][COLOR=red]' + bbArr[i] + '[/COLOR][/B]';
@@ -91,13 +94,17 @@ app.controller("MainCtrl",
 
 				$scope.testing = index + " " + shiftCount;
 			}
-
-			$scope["style" + index] = {'color' : 'red', 'font-weight' : 'bold'};
-
-			//only need to check the beginning because removing will remove both sides
-			if (!(bbArr[index].contains('[B][COLOR=red]')))
+			else
 			{
-				bbArr[index] = '[B][COLOR=red]' + bbArr[index] + '[/COLOR][/B]';
+
+
+				//$scope["style" + index] = {'color' : 'red', 'font-weight' : 'bold'};
+				htmlArr[index] = '<strong class="redRemove">' + htmlArr[index] + '</strong>';
+				//only need to check the beginning because removing will remove both sides
+				if (!(bbArr[index].contains('[B][COLOR=red]')))
+				{
+					bbArr[index] = '[B][COLOR=red]' + bbArr[index] + '[/COLOR][/B]';
+				}
 			}
 		}
 
@@ -148,10 +155,14 @@ app.controller("MainCtrl",
 			}
 	
 			//$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
+			if (htmlArr[index].contains('<strong class="redRemove">'))
+			{
+				htmlArr[index] = htmlArr[index].substring(26);
+				htmlArr[index] = htmlArr[index].substring(0, htmlArr[index].length - 9);
+			}
 
 			if (bbArr[index].contains('[B][COLOR=red]'))
 			{
-				$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
 				bbArr[index] = bbArr[index].substring(14);
 				bbArr[index] = bbArr[index].substring(0, bbArr[index].length - 12);
 			}
@@ -167,10 +178,10 @@ app.controller("MainCtrl",
 				// bbArr[index] = bbArr[index].substring(16);
 				// bbArr[index] = bbArr[index].substring(0, bbArr[index].length - 12);
 			}
-			else
-			{
-				$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
-			}
+			// else
+			// {
+			// 	$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
+			// }
 
 		}
 
@@ -200,7 +211,8 @@ app.controller("MainCtrl",
 				{
 					
 					htmlArr.splice(i + 1, 0, arr2add[i-index]);
-					$scope["style" + (i+1)] = {'color' : 'blue', 'font-weight' : 'bold'};
+					htmlArr[i + 1] = '<strong class="blueAdd">' + htmlArr[i + 1] + "</strong>";
+					//$scope["style" + (i+1)] = {'color' : 'blue', 'font-weight' : 'bold'};
 					bbArr.splice(i + 1, 0, '[B][COLOR=blue]' + arr2add[i-index] + '[/COLOR][/B]');
 
 				}

@@ -21,3 +21,13 @@ a
 	-khtml-user-select: none;
 	-ms-user-select: none;
 }
+
+.redRemove
+{
+	color: red;
+}
+
+.blueAdd
+{
+	color: blue;
+}
