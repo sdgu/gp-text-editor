@@ -1,4 +1,4 @@
-var app = angular.module("gptexteditor", ["ngSanitize"]);
+var app = angular.module("gptexteditor", ["ngSanitize", "ngclipboard"]);
 
 app.directive('ngRightClick', function($parse) {
     return function(scope, element, attrs) {

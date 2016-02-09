@@ -28,19 +28,20 @@
       <input id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)"/>
 
     </span>
+    <br />
     <button ng-click="increaseLimit()">Show More</button>
     </div>
     <br /><br /><br />
     <h1>BB Code</h1>
 
-    <button ng-click="copyToBoard()">C/P</button> <br />
-    <span ng-bind-html="cpthis"></span>
+    <button ng-click="copyToBoard()">First) Show</button> <br />
+    <button ngclipboard data-clipboard-target="#cptarget">Then) Copy to clipboard</button> <br />
+    <span ng-bind-html="cpthis" id="cptarget"></span>
 <!--     <span ng-show="readyToCP" ng-repeat="word in m.cpArr track by $index">
 
       <span ng-bind-html="word"></span>
 
     </span> -->
-
 
 
   </div>
@@ -62,6 +63,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.3/angular-material.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+    <script src="ngclipboard.min.js"></script>
     <script src="gp.js"></script>
     
   </body>
