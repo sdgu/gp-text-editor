@@ -130,7 +130,7 @@ app.controller("MainCtrl",
 							bbArr[i] = bbArr[i].substring(0, bbArr[i].length - 12);
 						}
 
-						//if (bbArr[i].contains('[B][COLOR=green]'))
+						//if (bbArr[i].contains('[B][COLOR=blue]'))
 						// {
 						// 	bbArr.splice(i, Math.max(firstInd, secondInd) - Math.min(firstInd, secondInd) + 1);
 						// 	htmlArr.splice(i, Math.max(firstInd, secondInd) - Math.min(firstInd, secondInd) + 1);
@@ -147,23 +147,30 @@ app.controller("MainCtrl",
 				$scope.testing = index + " " + shiftCount;
 			}
 	
-			$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
+			//$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
 
 			if (bbArr[index].contains('[B][COLOR=red]'))
 			{
-
+				$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
 				bbArr[index] = bbArr[index].substring(14);
 				bbArr[index] = bbArr[index].substring(0, bbArr[index].length - 12);
 			}
 
-			if (bbArr[index].contains('[B][COLOR=green]'))
+			if (bbArr[index].contains('[B][COLOR=blue]'))
 			{
 				bbArr.splice(index, 1);
 				htmlArr.splice(index, 1);
+			
+				$scope["style" + (index)] = {'color' : 'none', 'font-weight' : 'none'};
+				$scope["style" + (index-1)] = {'color' : 'none', 'font-weight' : 'none'};
+
 				// bbArr[index] = bbArr[index].substring(16);
 				// bbArr[index] = bbArr[index].substring(0, bbArr[index].length - 12);
 			}
-
+			else
+			{
+				$scope["style" + index] = {'color' : 'none', 'font-weight' : 'none'};
+			}
 
 		}
 
@@ -193,8 +200,8 @@ app.controller("MainCtrl",
 				{
 					
 					htmlArr.splice(i + 1, 0, arr2add[i-index]);
-					$scope["style" + (i+1)] = {'color' : 'green', 'font-weight' : 'bold'};
-					bbArr.splice(i + 1, 0, '[B][COLOR=green]' + arr2add[i-index] + '[/COLOR][/B]');
+					$scope["style" + (i+1)] = {'color' : 'blue', 'font-weight' : 'bold'};
+					bbArr.splice(i + 1, 0, '[B][COLOR=blue]' + arr2add[i-index] + '[/COLOR][/B]');
 
 				}
 

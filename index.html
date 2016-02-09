@@ -12,6 +12,7 @@
 		<input ng-model="addHere" />
 
 		<h1>WYSIWYG</h1>
+		<div class="noselect">
 		<span ng-repeat="word in m.dispArr track by $index">
 
 			<span ng-bind="word" ng-style="style{{$index}}" sglclick="turnRed($event, $index)" ng-right-click="removeStyle($event, $index)" ng-dblclick="showAddWord($event, $index)"></span>
@@ -19,7 +20,7 @@
 			<input id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)"/>
 
 		</span>
-
+		</div>
 		<br /><br /><br />
 		<h1>BB Code</h1>
 		<span ng-repeat="word in m.cpArr track by $index">
