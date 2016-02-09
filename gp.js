@@ -54,8 +54,8 @@ app.controller("MainCtrl",
 		$scope.limit = 200;
 		$scope.go = function()
 		{
-			$scope.m.dispArr = $scope.thingToGP.replace(/\n/g, "<br>").split(" ");
-			$scope.m.cpArr = $scope.thingToGP.replace(/\n/g, "<br>").split(" ");
+			$scope.m.dispArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
+			$scope.m.cpArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
 		}
 
 		$scope.copyToBoard = function()

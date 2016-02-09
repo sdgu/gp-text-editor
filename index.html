@@ -17,6 +17,8 @@
 
     <button ng-click="resetShift()">Reset Shift</button> (lazy solution if you accidentally lift shift before clicking the ending word)
 
+
+    <p>Left click a word to make it red. Hold down shift and click two places makes all the words inbetween red. It lags a bit to distinguish from double clicking. Double click to add words after. Right click to undo styling (also works like shift select, but uses Control instead).</p>
     <h1>WYSIWYG</h1>
     <div class="noselect">
     <span ng-repeat="word in m.dispArr | limitTo:limit track by $index">
