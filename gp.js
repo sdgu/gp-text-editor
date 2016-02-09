@@ -56,6 +56,8 @@ app.controller("MainCtrl",
 		var secondInd = 0;
 		var shiftCount = 0;
 
+
+
 		$scope.turnRed = function(event, index)
 		{	
 
@@ -127,6 +129,15 @@ app.controller("MainCtrl",
 							bbArr[i] = bbArr[i].substring(14);
 							bbArr[i] = bbArr[i].substring(0, bbArr[i].length - 12);
 						}
+
+						//if (bbArr[i].contains('[B][COLOR=green]'))
+						// {
+						// 	bbArr.splice(i, Math.max(firstInd, secondInd) - Math.min(firstInd, secondInd) + 1);
+						// 	htmlArr.splice(i, Math.max(firstInd, secondInd) - Math.min(firstInd, secondInd) + 1);
+						// 	// bbArr[index] = bbArr[index].substring(16);
+						// 	// bbArr[index] = bbArr[index].substring(0, bbArr[index].length - 12);
+						// }
+
 					}
 					shiftCount = 0;
 					firstInd = 0;
@@ -144,13 +155,54 @@ app.controller("MainCtrl",
 				bbArr[index] = bbArr[index].substring(14);
 				bbArr[index] = bbArr[index].substring(0, bbArr[index].length - 12);
 			}
+
+			if (bbArr[index].contains('[B][COLOR=green]'))
+			{
+				bbArr.splice(index, 1);
+				htmlArr.splice(index, 1);
+				// bbArr[index] = bbArr[index].substring(16);
+				// bbArr[index] = bbArr[index].substring(0, bbArr[index].length - 12);
+			}
+
+
 		}
+
+		$scope.showAddWord = function(event, index)
+		{
+			
+			$scope["addingWord" + index] = true;
+			
+			//$scope["addingWord" + index] = false;
+		}
+
+
 
 		$scope.addWord = function(event, index)
 		{
-			alert(index);
-		}
+			
+			var word2add = $("#wordToAdd" + index).val();
+			var arr2add = word2add.split(" ");
 
+
+
+			if (event.keyCode === 13)
+			{
+				//htmlArr.splice(index + 1, 0, arr2add);
+				
+				for (var i = index; i < index + arr2add.length; i++)
+				{
+					
+					htmlArr.splice(i + 1, 0, arr2add[i-index]);
+					$scope["style" + (i+1)] = {'color' : 'green', 'font-weight' : 'bold'};
+					bbArr.splice(i + 1, 0, '[B][COLOR=green]' + arr2add[i-index] + '[/COLOR][/B]');
+
+				}
+
+
+				$scope["addingWord" + index] = false;
+
+			}
+		}
 
 		$scope.test = function()
 		{
