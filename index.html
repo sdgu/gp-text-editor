@@ -1,52 +1,47 @@
-<html>
-<head>
-	<title>GP Text Editor</title>
-</head>
-<body ng-app="gptexteditor">
-	<div ng-controller="MainCtrl as m">
-
-		<textarea cols="50" rows="20" ng-model="thingToGP"></textarea> <br />
-		<button ng-click="go()">Prep</button> <br />
-		<p ng-bind="thingToGP"></p>
-
-		<span ng-style="testStyle" ng-dblclick="test3()" ng-right-click="test2($event)" sglclick="test()">Test</span>
-		<br />
-		<!-- <span ng-bind="testing"></span> -->
-
-		<button ng-click="resetShift()">Reset Shift</button> (lazy solution if you accidentally lift shift before clicking the ending word)
-
-		<h1>WYSIWYG</h1>
-		<div class="noselect">
-		<span ng-repeat="word in m.dispArr track by $index">
-
-			<span ng-bind-html="word" ng-style="style{{$index}}" sglclick="turnRed($event, $index)" ng-right-click="removeStyle($event, $index)" ng-dblclick="showAddWord($event, $index)"></span>
-
-			<input id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)"/>
-
-		</span>
-		</div>
-		<br /><br /><br />
-		<h1>BB Code</h1>
-		<span ng-repeat="word in m.cpArr track by $index">
-
-			<span ng-bind="word"></span>
-
-		</span>
+<html ng-app="gptexteditor">
+  <head>
+    <title>GP Text Editor</title>
+  </head>
+  <body>
 
 
+    <div ng-controller="MainCtrl as m">
+
+    <textarea cols="50" rows="20" ng-model="thingToGP"></textarea> <br />
+    <button ng-click="go()">Prep</button> <br />
 
 
+<!--     <span ng-style="testStyle" ng-dblclick="test3()" ng-right-click="test2($event)" sglclick="test()">Test</span> -->
+    <br />
 
 
+    <button ng-click="resetShift()">Reset Shift</button> (lazy solution if you accidentally lift shift before clicking the ending word)
 
+    <h1>WYSIWYG</h1>
+    <div class="noselect">
+    <span ng-repeat="word in m.dispArr | limitTo:limit track by $index">
 
+      <span ng-bind-html="word" ng-style="style{{$index}}" sglclick="turnRed($event, $index)" ng-right-click="removeStyle($event, $index)" ng-dblclick="showAddWord($event, $index)"></span>
+
+      <input id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)"/>
+
+    </span>
+    <button ng-click="increaseLimit()">Show More</button>
+    </div>
+    <br /><br /><br />
+    <h1>BB Code</h1>
+
+    <button ng-click="copyToBoard()">C/P</button> <br />
+    <span ng-bind-html="cpthis"></span>
+<!--     <span ng-show="readyToCP" ng-repeat="word in m.cpArr track by $index">
+
+      <span ng-bind-html="word"></span>
+
+    </span> -->
 
 
 
-
-
-
-	</div>
+  </div>
 
 
 
@@ -57,14 +52,15 @@
 
 
 
-<link rel='stylesheet' href='gpstyle.css'></link>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.3/angular-material.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="gp.js"></script>
-</body>
+    <link rel="stylesheet" href="gpstyle.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.3/angular-material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="gp.js"></script>
+    
+  </body>
 </html>
