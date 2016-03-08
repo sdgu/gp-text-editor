@@ -1,0 +1,89 @@
+<html ng-app="gptexteditor">
+  <head>
+    <title>GP Text Editor</title>
+  </head>
+  <body>
+
+<script>
+window.onbeforeunload = function (e) {
+    e = e || window.event;
+
+    // For IE and Firefox prior to version 4
+    if (e) {
+        e.returnValue = 'Sure?';
+    }
+
+    // For Safari
+    return 'Sure?';
+};
+</script>
+    <div ng-controller="MainCtrl as m">
+
+      <span ng-bind="cooks"></span>
+
+    <textarea cols="50" rows="20" ng-model="thingToGP"></textarea> <br />
+    <button ng-click="go()">Prep</button> <br />
+
+
+<!--     <span ng-style="testStyle" ng-dblclick="test3()" ng-right-click="test2($event)" sglclick="test()">Test</span> -->
+    <br />
+
+
+    <button ng-click="resetShift()">Reset Shift</button> (lazy solution if you accidentally lift shift before clicking the ending word)
+
+
+    <p>Left click a word to make it red. Hold down shift and click two words to make everything inbetween red. Control click to undo styling on a word. Alt click to bring up an input box where you can add words.</p>
+    <p>Regular Left Click: Remove</p>
+    <p>ALT Click: add <strong>ALT</strong>ernatives.</p>
+    <p>Control Click: <strong>"Control"</strong> over edits.</p>
+    <h1>WYSIWYG</h1>
+    <div class="noselect">
+    <span ng-repeat="word in m.dispArr | limitTo:limit track by $index">
+
+      <span ng-bind-html="word" ng-style="style{{$index}}" ng-click="edit($event, $index)"></span>
+
+      <input id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)"/>
+
+    </span>
+    <br />
+    <button ng-click="increaseLimit()">Show More</button>
+    </div>
+    <br /><br /><br />
+    <h1>BB Code</h1>
+
+    <button ng-click="copyToBoard()">First) Show</button> <br />
+    <button ngclipboard data-clipboard-target="#cptarget">Then) Copy to clipboard</button> <br />
+    <span ng-bind-html="cpthis" id="cptarget"></span>
+<!--     <span ng-show="readyToCP" ng-repeat="word in m.cpArr track by $index">
+
+      <span ng-bind-html="word"></span>
+
+    </span> -->
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="gpstyle.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.3/angular-material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
+    <script src="ngclipboard.min.js"></script>
+    <script src="gp.js"></script>
+    
+  </body>
+</html>
