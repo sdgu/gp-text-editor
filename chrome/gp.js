@@ -75,7 +75,7 @@ app.controller("MainCtrl",
 
 		$scope.copyToBoard = function()
 		{
-			$scope.cpthis = $scope.m.cpArr.join(" ").replace(/\[\/S]\[\/COLOR]\[\/B] \[B]\[COLOR=red]\[S]/g, " ").replace(/\[B]\[COLOR=red]\[\/COLOR]\[\/B]/g, "");
+			$scope.cpthis = $scope.m.cpArr.join(" ").replace(/\[\/S]\[\/COLOR]\[\/B] \[B]\[COLOR=red]\[S]/g, " ").replace(/\[B]\[COLOR=red]\[\/COLOR]\[\/B]/g, "").replace(/\[\/B]\[\/COLOR] \[COLOR=blue]\[B]/g, " ");
 
 		}
 
@@ -180,7 +180,7 @@ app.controller("MainCtrl",
 						$scope.m.cpArr[index] = $scope.m.cpArr[index].substring(0, $scope.m.cpArr[index].length - 16);
 					}
 
-					if ($scope.m.cpArr[index].contains('[B][COLOR=blue]'))
+					if ($scope.m.cpArr[index].contains('[COLOR=blue][B]'))
 					{
 						$scope.m.cpArr.splice(index, 1);
 						$scope.m.dispArr.splice(index, 1);
@@ -242,7 +242,7 @@ app.controller("MainCtrl",
 					$scope.m.dispArr.splice(i + 1, 0, arr2add[i-index]);
 					$scope.m.dispArr[i + 1] = '<strong class="blueAdd">' + $scope.m.dispArr[i + 1] + "</strong>";
 					//$scope["style" + (i+1)] = {'color' : 'blue', 'font-weight' : 'bold'};
-					$scope.m.cpArr.splice(i + 1, 0, '[B][COLOR=blue]' + arr2add[i-index] + '[/COLOR][/B]');
+					$scope.m.cpArr.splice(i + 1, 0, '[COLOR=blue][B]' + arr2add[i-index] + '[/B][/COLOR]');
 
 				}
 
