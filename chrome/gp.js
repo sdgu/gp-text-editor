@@ -1,4 +1,4 @@
-var app = angular.module("gptexteditor", ["ngSanitize", "ngclipboard", "ngCookies"]);
+var app = angular.module("gptexteditor", ["ngSanitize", "ngclipboard", "ngCookies", "colorpicker.module"]);
 
 //redoing for chrome i think
 // app.directive('ngRightClick', function($parse) {
@@ -75,7 +75,10 @@ app.controller("MainCtrl",
 
 		$scope.copyToBoard = function()
 		{
+			//alert("add " + $scope.addColor + " remove " + $scope.remColor);
 			$scope.cpthis = $scope.m.cpArr.join(" ").replace(/\[\/S]\[\/COLOR]\[\/B] \[B]\[COLOR=red]\[S]/g, " ").replace(/\[B]\[COLOR=red]\[\/COLOR]\[\/B]/g, "").replace(/\[\/B]\[\/COLOR] \[COLOR=blue]\[B]/g, " ");
+			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=red]/g, "[COLOR=" + $scope.remColor + "]");
+			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=blue]/g, "[COLOR=" + $scope.addColor + "]");
 
 		}
 
