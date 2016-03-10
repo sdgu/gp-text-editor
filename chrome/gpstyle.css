@@ -20,6 +20,7 @@ a
 	-moz-user-select: none;
 	-khtml-user-select: none;
 	-ms-user-select: none;
+
 }
 
 .redRemove
@@ -32,3 +33,42 @@ a
 	color: blue;
 }
 
+.button
+{
+	border: 1px solid black;
+}
+
+.buttonlike
+{
+	display: inline-block;
+	padding: 0px 10px 0px 10px;
+
+	margin-top: 10px;
+	height: 40px;
+	line-height: 40px;
+	
+	color: #A5C663;
+	background-color: #582A72;
+	text-align: center;
+	
+	border-radius: 4px;
+	border: 1px solid black;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-ms-user-select: none;
+}
+
+.buttonlike:hover
+{
+	color: #0E787D;
+	background-color: #92D0D2;
+	cursor: pointer;
+}
+
+.buttonlike:active
+{
+	color: #fff;
+	background-color: #43a0a3;
+}

@@ -5,17 +5,17 @@
   <body>
 
 <script>
-    window.onbeforeunload = function (e) {
-        e = e || window.event;
+    // window.onbeforeunload = function (e) {
+    //     e = e || window.event;
 
-        // For IE and Firefox prior to version 4
-        if (e) {
-            e.returnValue = 'Sure?';
-        }
+    //     // For IE and Firefox prior to version 4
+    //     if (e) {
+    //         e.returnValue = 'Sure?';
+    //     }
 
-        // For Safari
-        return 'Sure?';
-    };
+    //     // For Safari
+    //     return 'Sure?';
+    // };
 </script>
     <div ng-controller="MainCtrl as m">
 <!-- 
@@ -25,41 +25,47 @@
 
 
     <h1>Use Firefox</h1>
+
+
+        <p>Left click a word to make it red. Hold down shift and click two words to make everything inbetween red. Control click to undo styling on a word / remove an addition. Alt click to bring up an input box where you can add words, and press enter to display them in the editor. <strong>Make sure to press enter before trying to make other additions.</strong></p>
+    <p>For comments, also use alt-click. Wrap them in [c][/c]. Note: they will appear blue in the editor but you can change their color later. No need to preface them by "Comment:", that is done for you.</p>
+    <p>
+        You do have to delete the whole word if you want to add / remove punctuation currently. 
+    </p>
     <textarea cols="50" rows="20" ng-model="thingToGP"></textarea> <br />
-    <button ng-click="go()">Prep</button> <br />
+    <a class="button" ng-click="go()" href="#editor"><div class="buttonlike">Prep</div></a> <br />
 
 
 <!--     <span ng-style="testStyle" ng-dblclick="test3()" ng-right-click="test2($event)" sglclick="test()">Test</span> -->
     <br />
 
 
-    <button ng-click="resetShift()">Reset Shift</button> (lazy solution if you accidentally lift shift before clicking the ending word)
+    
 
 
-    <p>Left click a word to make it red. Hold down shift and click two words to make everything inbetween red. Control click to undo styling on a word / remove an addition. Alt click to bring up an input box where you can add words, and press enter to display them in the editor. </p>
-    <p>For comments, also use alt-click. Wrap them in [c][/c]. Note: they will appear blue in the editor but you can change their color later. No need to preface them by "Comment:", that is done for you.</p>
-    <p>
-        You do have to delete the whole word if you want to add / remove punctuation currently. 
-    </p>
 
-    <h3>Quick Guide</h3>
+
+    <h3 id="editor">Quick Guide</h3>
     <p>Regular Left Click: Remove</p>
     <p>ALT Click: add <strong>ALT</strong>ernatives.</p>
     <p>Control Click: <strong>"Control"</strong> over edits.</p>
     <p>[c][/c] for comments</p>
-    <h1>WYSIWYG</h1>
+    <a class="button" ng-click="resetShift()"><div class="buttonlike">Reset Shift</div></a> (lazy solution if you accidentally lift shift before clicking the ending word)
+    <h1>WYSIWYG Editor</h1>
     <div class="noselect">
     <span ng-repeat="word in m.dispArr | limitTo:limit track by $index">
 
       <span ng-bind-html="word" ng-style="style{{$index}}" ng-click="edit($event, $index)"></span>
 
-      <input id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)"/>
+
+      <a class="button" ng-show="addingWord{{$index}}" ng-click="addComTag($index)">[c]</a>
+      <input size="40" id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)"/>
 
     </span>
-    <br />
-    <button ng-click="increaseLimit()">Show More</button>
+    <br /> <br />
+    <a class="button" ng-click="increaseLimit()"><div class="buttonlike">Show More</div></a>
     </div>
-    <br /><br /><br />
+    <br />
     <h1>BB Code</h1>
 
 
@@ -76,8 +82,8 @@
     Comment Color: <input colorpicker ng-model="comColor"></input><br />
 
     <p>Whenever you make changes above, click Show to update everything and convert it to BB Code. Then click Copy to clipboard for easy c/p.</p>
-    <button ng-click="copyToBoard()">Show</button> <br />
-    <button ngclipboard data-clipboard-target="#cptarget">Copy to clipboard</button> <br />
+    <a class="button" ng-click="copyToBoard()"><div class="buttonlike">Show</div></a> <br />
+    <a class="button" ngclipboard data-clipboard-target="#cptarget"><div class="buttonlike">Copy to clipboard</div></a> <br />
     <span ng-bind-html="cpthis" id="cptarget"></span>
 <!--     <span ng-show="readyToCP" ng-repeat="word in m.cpArr track by $index">
 
