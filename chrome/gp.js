@@ -105,6 +105,37 @@ app.controller("MainCtrl",
 
 		}
 
+
+function setSelectionRange(input, selectionStart, selectionEnd) {
+  if (input.setSelectionRange) {
+    input.focus();
+    input.setSelectionRange(selectionStart, selectionEnd);
+  }
+  else if (input.createTextRange) {
+    var range = input.createTextRange();
+    range.collapse(true);
+    range.moveEnd('character', selectionEnd);
+    range.moveStart('character', selectionStart);
+    range.select();
+  }
+}
+
+function setCaretToPos (input, pos) {
+  setSelectionRange(input, pos, pos);
+}
+
+
+		$scope.addComTag = function(index)
+		{
+			var comment2add = $("#wordToAdd" + index).val();
+			//$("#wordToAdd" + index).focus();
+			$("#wordToAdd" + index).val(comment2add + "[c][/c]");
+			setCaretToPos($("#wordToAdd" + index)[0], comment2add.length + 3);
+			//alert(comment2add);
+
+		}
+
+
 		$scope.edit = function(event, index)
 		{	
 
@@ -208,6 +239,8 @@ app.controller("MainCtrl",
 			if (event.altKey)
 			{
 				$scope["addingWord" + index] = true;
+				
+				
 			}
 			else if (!event.ctrlKey && !event.altKey && !event.shiftKey)
 			{
@@ -223,6 +256,14 @@ app.controller("MainCtrl",
 			}
 		}
 
+		$scope.focusInput = function(event, index)
+		{
+
+			if (event.altKey)
+			{
+				$("#wordToAdd" + index).focus();
+			}
+		}
 
 		$scope.showAddWord = function(event, index)
 		{
