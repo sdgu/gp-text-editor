@@ -32,6 +32,9 @@
     <p>
         You do have to delete the whole word if you want to add / remove punctuation currently. 
     </p>
+    <p>
+        Do not include HTML in the text you want to edit. BB Code is fine though.
+    </p>
     <textarea cols="50" rows="20" ng-model="thingToGP"></textarea> <br />
     <a ng-click="go()" href="#editor"><div class="buttonlike">Prep</div></a> <br />
 
@@ -60,6 +63,7 @@
 
 
       <a ng-show="addingWord{{$index}}" ng-click="addComTag($index)"><div class="button">[c]</div></a>
+      <a ng-show="addingWord{{$index}}" ng-click="addAccE($index)"><div class="button">&eacute;</div></a>
       <input size="40" id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)" />
 
     </span>
@@ -86,7 +90,7 @@
     <p>Whenever you make changes above, click Show to update everything and convert it to BB Code. Then click Copy to clipboard for easy c/p.</p>
     <a ng-click="copyToBoard()"><div class="buttonlike">Show</div></a> <br />
     <a ngclipboard data-clipboard-target="#cptarget"><div class="buttonlike">Copy to clipboard</div></a> <br />
-    <span ng-bind-html="cpthis" id="cptarget"></span>
+    <textarea ng-bind="cpthis" id="cptarget" cols="50" rows="20"></textarea>
 <!--     <span ng-show="readyToCP" ng-repeat="word in m.cpArr track by $index">
 
       <span ng-bind-html="word"></span>

@@ -1,5 +1,10 @@
 var app = angular.module("gptexteditor", ["ngSanitize", "ngclipboard", "ngCookies", "colorpicker.module"]);
 
+
+app.filter("keepHTML", function()
+{
+	
+});
 //redoing for chrome i think
 // app.directive('ngRightClick', function($parse) {
 //     return function(scope, element, attrs) {
@@ -87,7 +92,8 @@ app.controller("MainCtrl",
 			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=red]/g, "[COLOR=" + $scope.remColor + "]");
 			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=blue]/g, "[COLOR=" + $scope.addColor + "]");
 			$scope.cpthis = $scope.cpthis.replace(/\[c](.*?)\[\/c]/g, "[COLOR=" + $scope.comColor + "]" + "(Comment: $1)[/COLOR]");
-			$scope.cpthis = "[COLOR=" + $scope.addColor + "][B]add[/B][/COLOR] " + "[COLOR=" + $scope.remColor + "][B][S]remove[/S][/B][/COLOR] " + "[COLOR=" + $scope.comColor + "][B]comments[/B][/COLOR] <br />" + $scope.cpthis;
+			$scope.cpthis = "[COLOR=" + $scope.addColor + "][B]add[/B][/COLOR] " + "[COLOR=" + $scope.remColor + "][B][S]remove[/S][/B][/COLOR] " + "[COLOR=" + $scope.comColor + "][B]comments[/B][/COLOR] \n" + $scope.cpthis;
+			$scope.cpthis = $scope.cpthis.replace(/ \<br\> /g, "\n");
 		}
 
 		$scope.increaseLimit = function()
@@ -134,6 +140,13 @@ function setCaretToPos (input, pos) {
 			setCaretToPos($("#wordToAdd" + index)[0], comment2add.length + 3);
 			//alert(comment2add);
 
+		}
+
+		$scope.addAccE = function(index)
+		{
+			var currentText = $("#wordToAdd" + index).val();
+			$("#wordToAdd" + index).val(currentText + "&eacute;");
+			setCaretToPos($("#wordToAdd" + index)[0], currentText.length + 8);
 		}
 
 
