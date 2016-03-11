@@ -5,17 +5,17 @@
   <body>
 
 <script>
-    // window.onbeforeunload = function (e) {
-    //     e = e || window.event;
+    window.onbeforeunload = function (e) {
+        e = e || window.event;
 
-    //     // For IE and Firefox prior to version 4
-    //     if (e) {
-    //         e.returnValue = 'Sure?';
-    //     }
+        // For IE and Firefox prior to version 4
+        if (e) {
+            e.returnValue = 'Sure?';
+        }
 
-    //     // For Safari
-    //     return 'Sure?';
-    // };
+        // For Safari
+        return 'Sure?';
+    };
 </script>
     <div ng-controller="MainCtrl as m">
 <!-- 
@@ -27,8 +27,8 @@
     <h1>Use Firefox</h1>
 
 
-        <p>Left click a word to make it red. Hold down shift and click two words to make everything inbetween red. Control click to undo styling on a word / remove an addition. Alt click to bring up an input box where you can add words, and press enter to display them in the editor. <strong>Make sure to press enter before trying to make other additions.</strong></p>
-    <p>For comments, also use alt-click. Wrap them in [c][/c]. Note: they will appear blue in the editor but you can change their color later. No need to preface them by "Comment:", that is done for you.</p>
+    <p>Left click a word to make it red. Hold down shift and click two words to make everything inbetween red. Control click to undo styling on a word / remove an addition. Alt click to bring up an input box where you can add words, and press enter to display them in the editor. <strong>Make sure to press enter before trying to make other additions.</strong></p>
+    <p>For comments, also use alt-click. Wrap them in [c][/c]. Note: they will appear blue in the editor but you can change their color later. No need to preface them by "Comment:", that is done for you. The [c] button creates the comment tags; however, you can't highlight text and press the button to wrap the text in [c][/c].</p>
     <p>
         You do have to delete the whole word if you want to add / remove punctuation currently. 
     </p>
@@ -43,10 +43,14 @@
 
 
     <h3 id="editor">Quick Guide</h3>
-    <p>Regular Left Click: Remove</p>
-    <p>ALT Click: add <strong>ALT</strong>ernatives.</p>
-    <p>Control Click: <strong>"Control"</strong> over edits.</p>
-    <p>[c][/c] for comments</p>
+    <ul>
+        <li>Regular Left Click: Remove</li>
+        <li>ALT Click: add <strong>ALT</strong>ernatives.</li>
+        <li>Control Click: <strong>"Control"</strong> over edits.</li>
+        <li>[c][/c] for comments</li>
+
+    </ul>
+
     <a ng-click="resetShift()"><div class="buttonlike">Reset Shift</div></a> (lazy solution if you accidentally lift shift before clicking the ending word)
     <h1>WYSIWYG Editor</h1>
     <div class="noselect">
@@ -71,9 +75,10 @@
         test space :) <br /> <br />
     <span ng-style="{'color' : addColor, 'font-weight' : 'bold'}">add</span> <span ng-style="{'color' : remColor, 'font-weight' : 'bold', 'text-decoration' : 'line-through'}">remove</span> 
     <span ng-style="{'color' : comColor, 'font-weight' : 'bold'}">comment</span><br />
-    <br >
+    <br />
     test space end :)
 </div>
+<br />
     Add Color: <input colorpicker ng-model="addColor"></input>
     Remove Color: <input colorpicker ng-model="remColor"></input> 
     Comment Color: <input colorpicker ng-model="comColor"></input><br />

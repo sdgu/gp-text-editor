@@ -87,6 +87,7 @@ app.controller("MainCtrl",
 			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=red]/g, "[COLOR=" + $scope.remColor + "]");
 			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=blue]/g, "[COLOR=" + $scope.addColor + "]");
 			$scope.cpthis = $scope.cpthis.replace(/\[c](.*?)\[\/c]/g, "[COLOR=" + $scope.comColor + "]" + "(Comment: $1)[/COLOR]");
+			$scope.cpthis = "[COLOR=" + $scope.addColor + "][B]add[/B][/COLOR] " + "[COLOR=" + $scope.remColor + "][B][S]remove[/S][/B][/COLOR] " + "[COLOR=" + $scope.comColor + "][B]comments[/B][/COLOR] <br />" + $scope.cpthis;
 		}
 
 		$scope.increaseLimit = function()
