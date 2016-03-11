@@ -85,15 +85,32 @@ app.controller("MainCtrl",
 
 		}
 
+		$scope.checked = 
+		{
+			val : true
+		}
+
+
 		$scope.copyToBoard = function()
 		{
 			//alert("add " + $scope.addColor + " remove " + $scope.remColor);
+
+			var colorToAdd = "[COLOR=" + $scope.addColor + "]";
+			var colorToRem = "[COLOR=" + $scope.remColor + "]";
+			var colorToCom = "[COLOR=" + $scope.comColor + "]";
+
 			$scope.cpthis = $scope.m.cpArr.join(" ").replace(/\[\/S]\[\/COLOR]\[\/B] \[B]\[COLOR=red]\[S]/g, " ").replace(/\[B]\[COLOR=red]\[\/COLOR]\[\/B]/g, "").replace(/\[\/B]\[\/COLOR] \[COLOR=blue]\[B]/g, " ");
-			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=red]/g, "[COLOR=" + $scope.remColor + "]");
-			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=blue]/g, "[COLOR=" + $scope.addColor + "]");
-			$scope.cpthis = $scope.cpthis.replace(/\[c](.*?)\[\/c]/g, "[COLOR=" + $scope.comColor + "]" + "(Comment: $1)[/COLOR]");
+			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=red]/g, colorToRem);
+			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=blue]/g, colorToAdd);
+			$scope.cpthis = $scope.cpthis.replace(/\[c](.*?)\[\/c]/g, colorToCom + "(Comment: $1)[/COLOR]");
 			$scope.cpthis = "[COLOR=" + $scope.addColor + "][B]add[/B][/COLOR] " + "[COLOR=" + $scope.remColor + "][B][S]remove[/S][/B][/COLOR] " + "[COLOR=" + $scope.comColor + "][B]comments[/B][/COLOR] \n" + $scope.cpthis;
 			$scope.cpthis = $scope.cpthis.replace(/ \<br\> /g, "\n");
+			
+			if ($scope.checked.val)
+			{
+				$scope.cpthis = $scope.cpthis.replace(/U-Turn/g, colorToRem + "[B][S]U-Turn[/S][/B][/COLOR] " + colorToAdd + "[B]U-turn[/B][/COLOR]");
+				$scope.cpthis = $scope.cpthis.replace(/V-Create/g, colorToRem + "[B][S]V-Create[/S][/B][/COLOR] " + colorToAdd + "[B]V-create[/B][/COLOR]");
+			}
 		}
 
 		$scope.increaseLimit = function()
@@ -145,8 +162,8 @@ function setCaretToPos (input, pos) {
 		$scope.addAccE = function(index)
 		{
 			var currentText = $("#wordToAdd" + index).val();
-			$("#wordToAdd" + index).val(currentText + "&eacute;");
-			setCaretToPos($("#wordToAdd" + index)[0], currentText.length + 8);
+			$("#wordToAdd" + index).val(currentText + "Pok&eacute;mon");
+			setCaretToPos($("#wordToAdd" + index)[0], currentText.length + 14);
 		}
 
 

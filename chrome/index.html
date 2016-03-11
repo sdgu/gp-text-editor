@@ -29,6 +29,8 @@
 
     <p>Left click a word to make it red. Hold down shift and click two words to make everything inbetween red. Control click to undo styling on a word / remove an addition. Alt click to bring up an input box where you can add words, and press enter to display them in the editor. <strong>Make sure to press enter before trying to make other additions.</strong></p>
     <p>For comments, also use alt-click. Wrap them in [c][/c]. Note: they will appear blue in the editor but you can change their color later. No need to preface them by "Comment:", that is done for you. The [c] button creates the comment tags; however, you can't highlight text and press the button to wrap the text in [c][/c].</p>
+
+    <p>The &eacute; button automatically inserts Pok&eacute;mon.</p>
     <p>
         You do have to delete the whole word if you want to add / remove punctuation currently. 
     </p>
@@ -88,6 +90,8 @@
     Comment Color: <input colorpicker ng-model="comColor"></input><br />
 
     <p>Whenever you make changes above, click Show to update everything and convert it to BB Code. Then click Copy to clipboard for easy c/p.</p>
+    <input type="checkbox" ng-model="checked.val"> Pokegrammar? <br />
+    
     <a ng-click="copyToBoard()"><div class="buttonlike">Show</div></a> <br />
     <a ngclipboard data-clipboard-target="#cptarget"><div class="buttonlike">Copy to clipboard</div></a> <br />
     <textarea ng-bind="cpthis" id="cptarget" cols="50" rows="20"></textarea>
