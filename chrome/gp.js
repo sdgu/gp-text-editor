@@ -68,6 +68,11 @@ app.controller("MainCtrl",
 		}
 
 
+		$scope.testF = function(event)
+		{
+			alert(event.ctrlKey);
+		}
+
 		$scope.copyToBoard = function()
 		{
 			//alert("add " + $scope.addColor + " remove " + $scope.remColor);
@@ -229,14 +234,17 @@ function setCaretToPos (input, pos) {
 				// 	secondInd = 0;
 				// }
 				
+				
 
-
+				alert($scope.m.dispArr);
+				alert($scope.m.cpArr);
 				//else
 				{
-					if ($scope.m.dispArr[index].contains('<del><strong class="redRemove">'))
+					if ($scope.m.dispArr[index].indexOf('<del><strong class="redRemove">') > -1)
 					{
 						$scope.m.dispArr[index] = $scope.m.dispArr[index].substring(31);
 						$scope.m.dispArr[index] = $scope.m.dispArr[index].substring(0, $scope.m.dispArr[index].length - 15);
+						alert($scope.m.dispArr);
 					}
 
 					if ($scope.m.cpArr[index].contains('[B][COLOR=red][S]'))
