@@ -193,53 +193,15 @@ function setCaretToPos (input, pos) {
 
 				$scope.testing = index + " " + shiftCount;
 			}
-			if (event.ctrlKey)
+			if (event.ctrlKey && !event.altKey)
 			{
 					
-				// shiftCount++;
-				// if (shiftCount === 1)
-				// {
-				// 	firstInd = index;
-				// }
-				// if (shiftCount === 2)
-				// {
-				// 	secondInd = index;
-				// }
-
-				// if (secondInd > 0)
-				// {
-				// 	for (var i = Math.min(firstInd, secondInd); i < Math.max(firstInd, secondInd); i++)
-				// 	{
-
-				// 		if ($scope.m.dispArr[i].contains('<del><strong class="redRemove">'))
-				// 		{
-				// 			$scope.m.dispArr[i] = $scope.m.dispArr[i].substring(26);
-				// 			$scope.m.dispArr[i] = $scope.m.dispArr[i].substring(0, $scope.m.dispArr[i].length - 9);
-				// 		}
-				// 		if ($scope.m.cpArr[i].contains('[B][COLOR=red][S]'))
-				// 		{
-
-				// 			$scope.m.cpArr[i] = $scope.m.cpArr[i].substring(14);
-				// 			$scope.m.cpArr[i] = $scope.m.cpArr[i].substring(0, $scope.m.cpArr[i].length - 12);
-				// 		}
-
-				// 	}
-				// 	shiftCount = 0;
-				// 	firstInd = 0;
-				// 	secondInd = 0;
-				// }
-				
-				
-
-				alert($scope.m.dispArr);
-				alert($scope.m.cpArr);
-				//else
 				{
 					if ($scope.m.dispArr[index].indexOf('<del><strong class="redRemove">') > -1)
 					{
 						$scope.m.dispArr[index] = $scope.m.dispArr[index].substring(31);
 						$scope.m.dispArr[index] = $scope.m.dispArr[index].substring(0, $scope.m.dispArr[index].length - 15);
-						alert($scope.m.dispArr);
+						
 					}
 
 					if ($scope.m.cpArr[index].indexOf('[B][COLOR=red][S]') > -1)
