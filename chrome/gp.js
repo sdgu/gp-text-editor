@@ -67,7 +67,10 @@ app.controller("MainCtrl",
 			smog : false
 		}
 
-
+		$scope.testF = function(event)
+		{
+			alert(event.altKey);
+		}
 		$scope.copyToBoard = function()
 		{
 			//alert("add " + $scope.addColor + " remove " + $scope.remColor);
@@ -181,7 +184,7 @@ function setCaretToPos (input, pos) {
 					for (var i = Math.min(firstInd, secondInd); i < Math.max(firstInd, secondInd) + 1; i++)
 					{
 						$scope.m.dispArr[i] = '<del><strong class="redRemove">' + $scope.m.dispArr[i] + '</strong></del>';
-						if (!($scope.m.cpArr[i].contains('[B][COLOR=red][S]')))
+						if (!($scope.m.cpArr[i].indexOf('[B][COLOR=red][S]') > -1))
 						{
 							$scope.m.cpArr[i] = '[B][COLOR=red][S]' + $scope.m.cpArr[i] + '[/S][/COLOR][/B]';
 						}
@@ -233,19 +236,19 @@ function setCaretToPos (input, pos) {
 
 				//else
 				{
-					if ($scope.m.dispArr[index].contains('<del><strong class="redRemove">'))
+					if ($scope.m.dispArr[index].indexOf('<del><strong class="redRemove">') > -1)
 					{
 						$scope.m.dispArr[index] = $scope.m.dispArr[index].substring(31);
 						$scope.m.dispArr[index] = $scope.m.dispArr[index].substring(0, $scope.m.dispArr[index].length - 15);
 					}
 
-					if ($scope.m.cpArr[index].contains('[B][COLOR=red][S]'))
+					if ($scope.m.cpArr[index].indexOf('[B][COLOR=red][S]') > -1)
 					{
 						$scope.m.cpArr[index] = $scope.m.cpArr[index].substring(17);
 						$scope.m.cpArr[index] = $scope.m.cpArr[index].substring(0, $scope.m.cpArr[index].length - 16);
 					}
 
-					if ($scope.m.cpArr[index].contains('[COLOR=blue][B]'))
+					if ($scope.m.cpArr[index].indexOf('[COLOR=blue][B]') > -1)
 					{
 						$scope.m.cpArr.splice(index, 1);
 						$scope.m.dispArr.splice(index, 1);
@@ -273,7 +276,7 @@ function setCaretToPos (input, pos) {
 		
 				$scope.m.dispArr[index] = '<del><strong class="redRemove">' + $scope.m.dispArr[index] + '</strong></del>';
 				//only need to check the beginning because removing will remove both sides
-				if (!($scope.m.cpArr[index].contains('[B][COLOR=red][S]')))
+				if (!($scope.m.cpArr[index].indexOf('[B][COLOR=red][S]') > -1))
 				{
 					$scope.m.cpArr[index] = '[B][COLOR=red][S]' + $scope.m.cpArr[index] + '[/S][/COLOR][/B]';
 				}
