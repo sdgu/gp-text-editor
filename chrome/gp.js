@@ -49,19 +49,6 @@ app.controller("MainCtrl",
 	function($scope, $cookies)
 	{
 	
-
-		// var message = "pasta apple";
-		// var $scope.m.dispArr = message.split(" ");
-		// var $scope.m.cpArr = message.split(" ");
-		
-		// $scope.m.dispArr = $scope.m.dispArr;
-		// $scope.m.cpArr = $scope.m.cpArr;
-
-		//inside color gets shown
-		$scope.testReg = "<c>pasta is gouda</c>";
-		var pasta = 
-		$scope.testReg = $scope.testReg.replace(/<c>(.*?)<\/c>/g, "[COLOR=green][B]Comment: $1[/B][/COLOR]");
-
 		$scope.addColor = "blue";
 		$scope.remColor = "red";
 		$scope.comColor = "green";
@@ -69,25 +56,15 @@ app.controller("MainCtrl",
 		$scope.go = function()
 		{
 	
-			// if ($cookies.get("htmlArr").length > 0)
-			// {
-			// 	$scope.m.dispArr = $cookies.get("htmlArr");
-			// }
-
 			$scope.m.dispArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
 			$scope.m.cpArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
-			// var message = "These two names keep coming back to me and now I don't know if it's me or them now.";
-			// $scope.m.dispArr = message.split(" ");
-			// $scope.m.cpArr = message.split(" ");
-
-
-
-
+			$scope.cpthis = "";
 		}
 
 		$scope.checked = 
 		{
-			val : true
+			val : true,
+			smog : false
 		}
 
 
@@ -103,13 +80,22 @@ app.controller("MainCtrl",
 			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=red]/g, colorToRem);
 			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=blue]/g, colorToAdd);
 			$scope.cpthis = $scope.cpthis.replace(/\[c](.*?)\[\/c]/g, colorToCom + "(Comment: $1)[/COLOR]");
-			$scope.cpthis = "[COLOR=" + $scope.addColor + "][B]add[/B][/COLOR] " + "[COLOR=" + $scope.remColor + "][B][S]remove[/S][/B][/COLOR] " + "[COLOR=" + $scope.comColor + "][B]comments[/B][/COLOR] \n" + $scope.cpthis;
+			$scope.cpthis = "[COLOR=" + $scope.addColor + "][B]add[/B][/COLOR] " + "[COLOR=" + $scope.remColor + "][B][S]remove[/S][/B][/COLOR] " + "[COLOR=" + $scope.comColor + "][B]comments[/B][/COLOR] \n" + "[hide]" + $scope.cpthis + "[/hide]";
 			$scope.cpthis = $scope.cpthis.replace(/ \<br\> /g, "\n");
 			
 			if ($scope.checked.val)
 			{
 				$scope.cpthis = $scope.cpthis.replace(/U-Turn/g, colorToRem + "[B][S]U-Turn[/S][/B][/COLOR] " + colorToAdd + "[B]U-turn[/B][/COLOR]");
 				$scope.cpthis = $scope.cpthis.replace(/V-Create/g, colorToRem + "[B][S]V-Create[/S][/B][/COLOR] " + colorToAdd + "[B]V-create[/B][/COLOR]");
+				$scope.cpthis = $scope.cpthis.replace(/Ho-oh/g, colorToRem + "[B][S]Ho-oh[/S][/B][/COLOR] " + colorToAdd + "[B]Ho-Oh[/B][/COLOR]");
+				$scope.cpthis = $scope.cpthis.replace(/ThunderPunch/g, colorToRem + "[B][S]ThunderPunch[/S][/B][/COLOR] " + colorToAdd + "[B]Thunder Punch[/B][/COLOR]");
+
+			}
+
+			if ($scope.checked.smog)
+			{
+				$scope.cpthis = $scope.cpthis.replace(/Pokemon/g, colorToRem + "[B][S]Pokemon[/S][/B][/COLOR] " + colorToAdd + "[B]Pok&eacute;mon[/B][/COLOR]");
+
 			}
 		}
 
@@ -147,7 +133,7 @@ function setSelectionRange(input, selectionStart, selectionEnd) {
 function setCaretToPos (input, pos) {
   setSelectionRange(input, pos, pos);
 }
-
+	
 
 		$scope.addComTag = function(index)
 		{
@@ -157,6 +143,13 @@ function setCaretToPos (input, pos) {
 			setCaretToPos($("#wordToAdd" + index)[0], comment2add.length + 3);
 			//alert(comment2add);
 
+		}
+
+		$scope.addmdash = function(index)
+		{
+			var currentText = $("#wordToAdd" + index).val();
+			$("#wordToAdd" + index).val(currentText + "&mdash;");
+			setCaretToPos($("#wordToAdd" + index)[0], currentText.length + 7);
 		}
 
 		$scope.addAccE = function(index)
@@ -290,10 +283,10 @@ function setCaretToPos (input, pos) {
 		$scope.focusInput = function(event, index)
 		{
 
-			if (event.altKey)
-			{
+			// if (event.altKey)
+			// {
 				$("#wordToAdd" + index).focus();
-			}
+			// }
 		}
 
 		$scope.showAddWord = function(event, index)
