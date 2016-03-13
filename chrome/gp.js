@@ -53,51 +53,114 @@ app.controller("MainCtrl",
 		$scope.remColor = "red";
 		$scope.comColor = "green";
 		$scope.limit = 200;
+
+		$scope.amAdd = "#0000ff";
+		$scope.amRem = "#ff0000";
+
+		function regexEscape(str) {
+		    return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+		}
+
 		$scope.go = function()
 		{
-	
+			
 			$scope.m.dispArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
 
-			// var closingTag = false;
+			var closingTag = false;
 
-			// var i = 0;
+			var i = 0;
 
-			// while (i < $scope.m.dispArr.length)
-			// {
-			// 	var currentWord = $scope.m.dispArr[i];
+			// var checkAddCol = regexEscape("[COLOR=") + $scope.amAdd + regexEscape("]");
+			// var checkRemCol = regexEscape("[COLOR=") + $scope.amRem + regexEscape("]");
 
-			// 	if (currentWord.indexOf("[COLOR=blue]") > -1)
-			// 	{
-			// 		var j = 1; //calcing when closing tag ends
-			// 		while(!closingTag)
-			// 		{
+			// var checkAddCol = "\[COLOR=" + $scope.amAdd + "]";
+			// var checkRemCol = "\[COLOR=" + $scope.amRem + "]";
+
+			var checkAddCol = $scope.amAdd;
+			var checkRemCol = $scope.amRem;
+
+			while (i < $scope.m.dispArr.length)
+			{
+				var currentWord = $scope.m.dispArr[i];
+
+				if (currentWord.indexOf(checkAddCol) > -1)
+				{
+					var j = 0; //calcing when closing tag ends
+					while(!closingTag)
+					{
 						
+						
+						if ($scope.m.dispArr[i + j].indexOf("[/COLOR]") > -1)
+						{
+							closingTag = true;
+						}
 
-			// 			if ($scope.m.dispArr[i + j].indexOf("[/COLOR]") > -1)
-			// 			{
-			// 				closingTag = true;
-			// 			}
+						j++;
+					}
 
-			// 			j++;
-			// 		}
+					for (var k = 0; k < j; k++)
+					{
+						var wordToStyle = $scope.m.dispArr[i + k];
 
-			// 		alert(j);
-			// 	}
+						var regex = new RegExp(checkAddCol, "g");
 
+						$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(regex, "");
+						$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(/\[COLOR=]/g, "");
+						$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(/\[\/COLOR]/g, "");//.replace(/\[]/g, "").replace(/\[\/]/g, "");
+						$scope.m.dispArr[i + k] = '<strong class="AddMaster">' + $scope.m.dispArr[i + k] + "</strong>";
+					}
+					i = i + j;
+					closingTag = false;
+				}
 
-			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=blue]/g, '<span class="AddMaster">');
-			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=red]/g, '<span class="RemoveMaster">');
-			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=#0000ff]/g, '<span class="AddMaster">');
-			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=#ff0000]/g, '<span class="RemoveMaster">');
+				else if (currentWord.indexOf(checkRemCol) > -1)
+				{
+					var j = 0; //calcing when closing tag ends
+					while(!closingTag)
+					{
+						
+						
+						if ($scope.m.dispArr[i + j].indexOf("[/COLOR]") > -1)
+						{
+							closingTag = true;
+						}
 
-			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[\/COLOR]/g, "</span>");
+						j++;
+					}
 
-			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[B]/g, "<strong>")
-			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[\/B]/g, "</strong>")
+					for (var k = 0; k < j; k++)
+					{
+						var wordToStyle = $scope.m.dispArr[i + k];
 
+						var regex = new RegExp(checkRemCol, "g");
 
-			// 	i++;
-			// }
+						$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(regex, "");
+						$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(/\[COLOR=]/g, "");
+						$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(/\[\/COLOR]/g, "");//.replace(/\[]/g, "").replace(/\[\/]/g, "");
+					
+						$scope.m.dispArr[i + k] = '<del><strong class="RemoveMaster">' + $scope.m.dispArr[i + k] + "</strong></del>";
+				
+					}
+					i = i + j;
+					closingTag = false;
+				}
+
+				// $scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=blue]/g, '<span class="AddMaster">');
+				// $scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=red]/g, '<span class="RemoveMaster">');
+				// $scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=#0000ff]/g, '<span class="AddMaster">');
+				// $scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=#ff0000]/g, '<span class="RemoveMaster">');
+
+				// $scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[\/COLOR]/g, "</span>");
+
+				// $scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[B]/g, "<strong>")
+				// $scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[\/B]/g, "</strong>")
+				else
+				{
+					closingTag = false;
+					i++;
+				}
+				
+			}
 			
 			
 			
@@ -123,11 +186,17 @@ app.controller("MainCtrl",
 			var colorToRem = "[COLOR=" + $scope.remColor + "]";
 			var colorToCom = "[COLOR=" + $scope.comColor + "]";
 
+			var amAdd = "[COLOR=" + $scope.amAdd + "]";
+			var amRem = "[COLOR=" + $scope.amRem + "]";
+
 			$scope.cpthis = $scope.m.cpArr.join(" ").replace(/\[\/S]\[\/COLOR]\[\/B] \[B]\[COLOR=red]\[S]/g, " ").replace(/\[B]\[COLOR=red]\[\/COLOR]\[\/B]/g, "").replace(/\[\/B]\[\/COLOR] \[COLOR=blue]\[B]/g, " ");
 			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=red]/g, colorToRem);
 			$scope.cpthis = $scope.cpthis.replace(/\[COLOR=blue]/g, colorToAdd);
+
 			$scope.cpthis = $scope.cpthis.replace(/\[c](.*?)\[\/c]/g, colorToCom + "(Comment: $1)[/COLOR]");
+
 			$scope.cpthis = "[COLOR=" + $scope.addColor + "][B]add[/B][/COLOR] " + "[COLOR=" + $scope.remColor + "][B][S]remove[/S][/B][/COLOR] " + "[COLOR=" + $scope.comColor + "][B]comments[/B][/COLOR] \n" + "[hide]" + $scope.cpthis + "[/hide]";
+			
 			$scope.cpthis = $scope.cpthis.replace(/ \<br\> /g, "\n");
 			
 			if ($scope.checked.val)
