@@ -1,8 +1,9 @@
 body, html 
 {
-  padding: 20px;
+  padding: 30px;
   font: 20px "Ubuntu", sans-serif;
   background-color: #F0F0F0;
+
 }
 input
 {
@@ -15,6 +16,7 @@ textarea
 {
 	font: "Ubuntu", sans-serif;
 	font-size: 18px;
+
 }
 a 
 {
@@ -37,6 +39,21 @@ a
 .blueAdd
 {
 	color: blue;
+}
+
+.RemoveMaster
+{
+	color: red;
+}
+
+.AddMaster
+{
+	color: blue;
+}
+
+.strongMaster
+{
+	font-weight: bold;
 }
 
 .button

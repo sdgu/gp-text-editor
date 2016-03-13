@@ -5,17 +5,17 @@
   <body>
 
 <script>
-    // window.onbeforeunload = function (e) {
-    //     e = e || window.event;
+    window.onbeforeunload = function (e) {
+        e = e || window.event;
 
-    //     // For IE and Firefox prior to version 4
-    //     if (e) {
-    //         e.returnValue = 'Sure?';
-    //     }
+        // For IE and Firefox prior to version 4
+        if (e) {
+            e.returnValue = 'Sure?';
+        }
 
-    //     // For Safari
-    //     return 'Sure?';
-    // };
+        // For Safari
+        return 'Sure?';
+    };
 </script>
 <a onclick="location.reload(true)"><div class="button">Click me every couple of visits.</div></a>
     <div ng-controller="MainCtrl as m">
@@ -27,11 +27,14 @@
 
     <p>Left click a word to make it red. Hold down shift and click two words to make everything inbetween red. Control click to undo styling on a word / remove an addition. Alt click to bring up an input box where you can add words, and press enter to display them in the editor. <strong>Make sure to press enter before trying to make other additions.</strong></p>
 
-    <p><strong>If you're using Chrome, you have to use Control + Alt together to bring up the input box.</strong></p>
+    <p><strong>If you're using Chrome, you have to click with Control and Alt together to bring up the input box.</strong></p>
 
-    <p>For comments, also use alt-click. Wrap them in [c][/c]. Note: they will appear blue in the editor but you can change their color later. No need to preface them by "Comment:", that is done for you. The [c] button creates the comment tags; however, you can't highlight text and press the button to wrap the text in [c][/c].</p>
+    <p>For comments, also use alt-click. Wrap them in [c][/c]. Note: they will appear blue in the editor but you can change their color later. No need to preface them by "Comment:"; that is done for you. The <a class="button">[c]</a> button creates the comment tags; however, you can't highlight text and press the button to wrap the text in [c][/c].</p>
 
-    <p>The &eacute; button automatically inserts Pok&eacute;mon.</p>
+    <p>The <a class="button">&eacute;</a> button automatically inserts "Pok&amp;eacute;mon".</p>
+    
+    <p>Similarly, <a class="button">&mdash;</a> types "&amp;mdash;".</p>
+
     <p>
         You do have to delete the whole word if you want to add / remove punctuation currently. 
     </p>
@@ -51,7 +54,7 @@
     <h3 id="editor">Quick Guide</h3>
     <ul>
         <li>Regular Left Click: Remove</li>
-        <li>ALT Click: add <strong>ALT</strong>ernatives.</li>
+        <li>ALT Click: add <strong>ALT</strong>ernatives. (Control + Alt for Chrome)</li>
         <li>Control Click: <strong>"Control"</strong> over edits.</li>
         <li>[c][/c] for comments</li>
 

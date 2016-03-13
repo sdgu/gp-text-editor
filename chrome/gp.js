@@ -57,6 +57,53 @@ app.controller("MainCtrl",
 		{
 	
 			$scope.m.dispArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
+
+			// var closingTag = false;
+
+			// var i = 0;
+
+			// while (i < $scope.m.dispArr.length)
+			// {
+			// 	var currentWord = $scope.m.dispArr[i];
+
+			// 	if (currentWord.indexOf("[COLOR=blue]") > -1)
+			// 	{
+			// 		var j = 1; //calcing when closing tag ends
+			// 		while(!closingTag)
+			// 		{
+						
+
+			// 			if ($scope.m.dispArr[i + j].indexOf("[/COLOR]") > -1)
+			// 			{
+			// 				closingTag = true;
+			// 			}
+
+			// 			j++;
+			// 		}
+
+			// 		alert(j);
+			// 	}
+
+
+			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=blue]/g, '<span class="AddMaster">');
+			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=red]/g, '<span class="RemoveMaster">');
+			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=#0000ff]/g, '<span class="AddMaster">');
+			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[COLOR=#ff0000]/g, '<span class="RemoveMaster">');
+
+			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[\/COLOR]/g, "</span>");
+
+			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[B]/g, "<strong>")
+			// 	$scope.m.dispArr[i] = $scope.m.dispArr[i].replace(/\[\/B]/g, "</strong>")
+
+
+			// 	i++;
+			// }
+			
+			
+			
+			
+
+
 			$scope.m.cpArr = $scope.thingToGP.replace(/\n/g, " <br> ").split(" ");
 			$scope.cpthis = "";
 		}
@@ -139,8 +186,8 @@ function setCaretToPos (input, pos) {
 		{
 			var comment2add = $("#wordToAdd" + index).val();
 			//$("#wordToAdd" + index).focus();
-			$("#wordToAdd" + index).val(comment2add + "[c][/c]");
-			setCaretToPos($("#wordToAdd" + index)[0], comment2add.length + 3);
+			$("#wordToAdd" + index).val(comment2add + "[c]  [/c]");
+			setCaretToPos($("#wordToAdd" + index)[0], comment2add.length + 4);
 			//alert(comment2add);
 
 		}
