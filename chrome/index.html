@@ -74,7 +74,7 @@
     <input type="checkbox" ng-model="checked.smog"> Smog? (automatically changes Pokemon to Pok&eacute;mon) <br />
     <input type="checkbox" ng-model="checked.val"> Pokegrammar? (corrects U-Turn into U-turn, V-Create into V-create, Ho-oh into Ho-Oh, ThunderPunch to Thunder Punch) <hr /> <br />
 
-    <a ng-click="toggle()"><div class="buttonlike"><span ng-bind="hideOrShow"></span> Red Removals</div></a>
+    <div sticky><a ng-click="toggle()"><div class="buttonlike"><span ng-bind="hideOrShow"></span> Red Removals</div></a></div>
 
     <div class="noselect">
     <span ng-repeat="word in m.dispArr | limitTo:limit track by $index" ng-hide="literalText">
@@ -159,6 +159,7 @@
     <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"></script>
     <script src="ngclipboard.min.js"></script>
     <script src="bootstrap-colorpicker-module.min.js"></script>
+    <script src="sticky.js"></script>
     <script src="gp.js"></script>
     
   </body>

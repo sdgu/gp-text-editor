@@ -1,4 +1,4 @@
-var app = angular.module("gptexteditor", ["ngSanitize", "ngclipboard", "ngCookies", "colorpicker.module"]);
+var app = angular.module("gptexteditor", ["ngSanitize", "ngclipboard", "ngCookies", "colorpicker.module", "sticky"]);
 
 
 app.filter("keepHTML", function()
@@ -70,17 +70,35 @@ app.controller("MainCtrl",
 		$scope.toggle = function()
 		{
 			//alert($scope.m.dispArr);
-			$scope.hideOrShow = "Show";
-			var origArr = $scope.m.dispArr.slice(0);
-			$scope.literalText = !$scope.literalText;
-			$scope.m.dispArrLit = origArr;
-			for (var i = 0; i < $scope.m.dispArrLit.length; i++)
+			if ($scope.hideOrShow === "Show")
 			{
-				if ($scope.m.dispArrLit[i].indexOf("redRemove") > -1)
+				$scope.hideOrShow = "Hide";
+			}
+			else if ($scope.hideOrShow === "Hide")
+			{
+				$scope.hideOrShow = "Show";
+			}
+
+			if ($scope.literalText === false)
+			{
+				var origArr = "";
+				origArr = $scope.m.dispArr.slice(0);
+				$scope.literalText = !$scope.literalText;
+				$scope.m.dispArrLit = "";
+				$scope.m.dispArrLit = origArr;
+				for (var i = 0; i < $scope.m.dispArrLit.length; i++)
 				{
-					$scope.m.dispArrLit[i] = "";
+					if ($scope.m.dispArrLit[i].indexOf("redRemove") > -1)
+					{
+						$scope.m.dispArrLit[i] = "";
+					}
 				}
 			}
+			else
+			{
+				$scope.literalText = !$scope.literalText;
+			}
+
 		}
 
 		function styleThroughArr(arr, i, j, exp, sTag, fTag)
