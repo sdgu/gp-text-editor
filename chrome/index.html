@@ -73,10 +73,13 @@
     <h1>WYSIWYG Editor</h1>
     <input type="checkbox" ng-model="checked.smog"> Smog? (automatically changes Pokemon to Pok&eacute;mon) <br />
     <input type="checkbox" ng-model="checked.val"> Pokegrammar? (corrects U-Turn into U-turn, V-Create into V-create, Ho-oh into Ho-Oh, ThunderPunch to Thunder Punch) <hr /> <br />
-    <div class="noselect">
-    <span ng-repeat="word in m.dispArr | limitTo:limit track by $index">
 
-      <span ng-bind-html="word" ng-style="style{{$index}}" ng-mousedown="edit($event, $index)" ng-mouseup="focusInput($event, $index)"></span>
+    <a ng-click="toggle()"><div class="buttonlike"><span ng-bind="hideOrShow"></span> Red Removals</div></a>
+
+    <div class="noselect">
+    <span ng-repeat="word in m.dispArr | limitTo:limit track by $index" ng-hide="literalText">
+
+      <span ng-bind-html="word" ng-style="style{{$index}}" ng-mousedown="edit($event, $index)" ng-mouseup="focusInput($event, $index)" ng-hide="literalText{{$index}}"></span>
 
 
       <a ng-show="addingWord{{$index}}" ng-click="addComTag($index)"><div class="button">[c]</div></a>
@@ -86,6 +89,14 @@
       <input size="40" id="wordToAdd{{$index}}" ng-show="addingWord{{$index}}" ng-keyup="addWord($event, $index)" />
 
     </span>
+
+    <span ng-repeat="word in m.dispArrLit | limitTo:limit track by $index" ng-show="literalText">
+
+        <span ng-bind-html="word"></span>
+
+    </span>
+
+
     <br /> <br /> <hr />
     <a ng-click="increaseLimit()"><div class="buttonlike">Show More</div></a>
     </div>

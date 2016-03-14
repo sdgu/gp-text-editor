@@ -58,41 +58,30 @@ app.controller("MainCtrl",
 		$scope.amRem = "#ff0000";
 		$scope.amCom = "#00b300";
 
+
+		$scope.literalText = false;
+
 		function regexEscape(str) {
 		    return str.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
 		}
 
-// 					for (var k = 0; k < j; k++)
-// 					{
-// 						var wordToStyle = $scope.m.dispArr[i + k];
+		$scope.hideOrShow = "Hide";
 
-// 						var regex = new RegExp(checkAddCol, "g");
-// 						$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(regex, "");
-
-// 						if ($scope.m.dispArr[i + k].indexOf("\[COLOR=]") > -1 && $scope.m.dispArr[i + k].indexOf("\[\/COLOR]") > -1)
-// 						{
-// 							$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(/\[COLOR=]/g, '<strong class="AddMaster">');
-// 							$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(/\[\/COLOR]/g, "</strong>");
-// 						}
-// 						else if ($scope.m.dispArr[i + k].indexOf("\[COLOR=]") > -1) 
-// 						{
-// 							$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(/\[COLOR=]/g, '<strong class="AddMaster">');
-// 							$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k] + "</strong>";
-						
-// 						}
-// 						else if ($scope.m.dispArr[i + k].indexOf("\[\/COLOR]") > -1)
-// 						{
-// 							$scope.m.dispArr[i + k] = $scope.m.dispArr[i + k].replace(/\[\/COLOR]/g, "</strong>");
-// 							$scope.m.dispArr[i + k] = '<strong class="AddMaster">' + $scope.m.dispArr[i + k];//.replace(/\[\/COLOR]/g, "</strong>");//.replace(/\[]/g, "").replace(/\[\/]/g, "");
-
-// 						}
-						
-// 						else
-// 						{
-// 							$scope.m.dispArr[i + k] = '<strong class="AddMaster">' + $scope.m.dispArr[i + k] + "</strong>";
-// 						}
-// 					}
-
+		$scope.toggle = function()
+		{
+			//alert($scope.m.dispArr);
+			$scope.hideOrShow = "Show";
+			var origArr = $scope.m.dispArr.slice(0);
+			$scope.literalText = !$scope.literalText;
+			$scope.m.dispArrLit = origArr;
+			for (var i = 0; i < $scope.m.dispArrLit.length; i++)
+			{
+				if ($scope.m.dispArrLit[i].indexOf("redRemove") > -1)
+				{
+					$scope.m.dispArrLit[i] = "";
+				}
+			}
+		}
 
 		function styleThroughArr(arr, i, j, exp, sTag, fTag)
 		{
