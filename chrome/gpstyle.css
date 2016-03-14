@@ -41,14 +41,19 @@ a
 	color: blue;
 }
 
+.greenComment
+{
+	color: green;
+}
+
 .RemoveMaster
 {
-	color: #582A72;
+	color: #ff8000;
 }
 
 .AddMaster
 {
-	color: #A5C663;
+	color: #5900b3;
 }
 
 .strongMaster

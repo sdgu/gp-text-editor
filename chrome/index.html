@@ -5,17 +5,17 @@
   <body>
 
 <script>
-    // window.onbeforeunload = function (e) {
-    //     e = e || window.event;
+    window.onbeforeunload = function (e) {
+        e = e || window.event;
 
-    //     // For IE and Firefox prior to version 4
-    //     if (e) {
-    //         e.returnValue = 'Sure?';
-    //     }
+        // For IE and Firefox prior to version 4
+        if (e) {
+            e.returnValue = 'Sure?';
+        }
 
-    //     // For Safari
-    //     return 'Sure?';
-    // };
+        // For Safari
+        return 'Sure?';
+    };
 </script>
 <a onclick="location.reload(true)"><div class="button">Click me every couple of visits.</div></a>
     <div ng-controller="MainCtrl as m">
@@ -42,12 +42,12 @@
         Do not include HTML in the text you want to edit. BB Code is fine though.
     </p>
 
-    [COLOR=#0000ff]Add dong pasta manerino nsatoh[/COLOR]
-    <br />
 
+    <br />
+    <p>If you want to comment on an amcheck, put the colors they used here and paste the BB Code.</p>
     Amcheck Add: <input ng-model="amAdd"></input> Amcheck Remove: <input ng-model="amRem"></input>
 
-    <br />
+    <br /> <br />
     <textarea cols="50" rows="20" ng-model="thingToGP"></textarea> <br />
     <a ng-click="go()" href="#editor"><div class="buttonlike">Prep</div></a> <br />
 
